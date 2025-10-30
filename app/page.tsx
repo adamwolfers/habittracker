@@ -3,13 +3,14 @@
 import { useHabits } from '@/hooks/useHabits';
 import AddHabitForm from '@/components/AddHabitForm';
 import HabitCard from '@/components/HabitCard';
+import Footer from '@/components/Footer';
 
 export default function Home() {
   const { habits, addHabit, deleteHabit, toggleHabitCompletion, isHabitCompletedOnDate } = useHabits();
 
   return (
-    <div className="min-h-screen bg-gray-900 text-white">
-      <div className="max-w-7xl mx-auto px-4 py-8">
+    <div className="min-h-screen bg-gray-900 text-white flex flex-col">
+      <div className="max-w-7xl mx-auto px-4 py-8 flex-1">
         <header className="mb-8">
           <h1 className="text-4xl font-bold mb-2">Habit Tracker</h1>
           <p className="text-gray-400">
@@ -52,6 +53,7 @@ export default function Home() {
           )}
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
