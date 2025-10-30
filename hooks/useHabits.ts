@@ -8,27 +8,28 @@ const STORAGE_KEY = 'habits';
 
 export const useHabits = () => {
   const [habits, setHabits] = useState<Habit[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
+  const [isHydrated, setIsHydrated] = useState(false);
 
-  // Load habits from localStorage on mount
+  // Load habits from localStorage after hydration
   useEffect(() => {
     const stored = localStorage.getItem(STORAGE_KEY);
     if (stored) {
       try {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
         setHabits(JSON.parse(stored));
       } catch (error) {
         console.error('Error loading habits:', error);
       }
     }
-    setIsLoaded(true);
+    setIsHydrated(true);
   }, []);
 
-  // Save habits to localStorage whenever they change
+  // Save habits to localStorage whenever they change (after hydration)
   useEffect(() => {
-    if (isLoaded) {
+    if (isHydrated) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(habits));
     }
-  }, [habits, isLoaded]);
+  }, [habits, isHydrated]);
 
   const addHabit = (habitData: HabitFormData) => {
     const newHabit: Habit = {
@@ -74,6 +75,5 @@ export const useHabits = () => {
     deleteHabit,
     toggleHabitCompletion,
     isHabitCompletedOnDate,
-    isLoaded,
   };
 };

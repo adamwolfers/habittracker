@@ -5,15 +5,7 @@ import AddHabitForm from '@/components/AddHabitForm';
 import HabitCard from '@/components/HabitCard';
 
 export default function Home() {
-  const { habits, addHabit, deleteHabit, toggleHabitCompletion, isHabitCompletedOnDate, isLoaded } = useHabits();
-
-  if (!isLoaded) {
-    return (
-      <div className="min-h-screen bg-gray-900 text-white flex items-center justify-center">
-        <div className="text-xl">Loading...</div>
-      </div>
-    );
-  }
+  const { habits, addHabit, deleteHabit, toggleHabitCompletion, isHabitCompletedOnDate } = useHabits();
 
   return (
     <div className="min-h-screen bg-gray-900 text-white">
