@@ -202,8 +202,12 @@ describe('HabitCard', () => {
   });
 
   it('should show checkmark for completed days', () => {
+    // Use today's date to ensure it's in the last 7 days
+    const today = new Date();
+    const todayString = today.toISOString().split('T')[0];
+
     const mockIsCompleted = jest.fn((habitId: string, date: Date) => {
-      return date.toISOString().split('T')[0] === '2025-10-29';
+      return date.toISOString().split('T')[0] === todayString;
     });
 
     render(
